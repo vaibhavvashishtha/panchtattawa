@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { SessionProvider } from '@/components/providers/SessionProvider'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -37,9 +38,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body className="bg-obsidian text-parchment font-body antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <SessionProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   )
