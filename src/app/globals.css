@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAF0E6;
+    color: #1E1A16;
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: rgba(232, 104, 48, 0.25);
+    color: #1E1A16;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF0E6;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(232, 104, 48, 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 104, 48, 0.5);
+  }
+}
+
+@layer utilities {
+  /* Explicit gold/8 opacity utility (Tailwind doesn't generate arbitrary opacity bg by default) */
+  .bg-gold\/8 {
+    background-color: rgba(232, 104, 48, 0.08);
+  }
+}
