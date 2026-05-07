@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import type { Metadata } from 'next'
 
 const TABS = ['Journey', 'Path', 'Destination'] as const
 type Tab = typeof TABS[number]

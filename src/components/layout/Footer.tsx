@@ -131,7 +131,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-parchment-muted text-xs">
+          <p suppressHydrationWarning className="font-body text-parchment-muted text-xs">
             © {new Date().getFullYear()} Panchtatwa · Sri Guru Ji Dr. Manoj K Juyal · All rights reserved
           </p>
           <p className="font-body text-parchment-muted/60 text-xs">
