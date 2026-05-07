@@ -10,7 +10,11 @@ import { cn } from '@/lib/cn'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Guruji' },
   { href: '/videos', label: 'Content Library' },
+  { href: '/books', label: 'Books' },
+  { href: '/events', label: 'Events' },
+  { href: '/donate', label: 'Donate' },
   // { href: '/book', label: 'Book a Session' },
   // { href: '/sessions', label: 'My Sessions' },
 ]

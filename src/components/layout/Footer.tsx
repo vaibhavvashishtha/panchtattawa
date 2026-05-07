@@ -1,11 +1,13 @@
 import Link from 'next/link'
-import { Instagram, Youtube, Mail } from 'lucide-react'
+import { Instagram, Youtube, Mail, Facebook, Twitter } from 'lucide-react'
 
 const LINKS = {
   explore: [
+    { href: '/about', label: 'About Guruji' },
     { href: '/videos', label: 'Content Library' },
-    { href: '/book', label: 'Book a Session' },
-    { href: '/sessions', label: 'My Sessions' },
+    { href: '/books', label: 'Books' },
+    { href: '/events', label: 'Events & Classes' },
+    { href: '/donate', label: 'Donations' },
   ],
   elements: [
     { href: '/videos?category=panch-tatwa', label: 'Panch Tatwa' },
@@ -14,6 +16,29 @@ const LINKS = {
     { href: '/videos?category=healing', label: 'Sound Healing' },
   ],
 }
+
+const SOCIAL = [
+  {
+    href: 'https://www.facebook.com/panchtatwa/',
+    label: 'Facebook',
+    icon: Facebook,
+  },
+  {
+    href: 'https://www.instagram.com/srigurujimanojkjuyal',
+    label: 'Instagram',
+    icon: Instagram,
+  },
+  {
+    href: 'https://www.youtube.com/@panchtatwa',
+    label: 'YouTube',
+    icon: Youtube,
+  },
+  {
+    href: 'https://twitter.com/panchtatwa',
+    label: 'Twitter',
+    icon: Twitter,
+  },
+]
 
 export function Footer() {
   return (
@@ -32,26 +57,30 @@ export function Footer() {
               </div>
             </div>
             <p className="font-body text-parchment-muted text-sm leading-relaxed max-w-xs">
-              Ancient wisdom for the modern seeker. Guided by Sri Guru Ji Manoj K Juyal, explore the
-              five elements that govern all of existence.
+              Ancient wisdom for the modern seeker. Guided by Sri Guru Ji Dr. Manoj K Juyal — explore
+              the five elements that govern all of existence.
             </p>
+            <div className="mt-3 font-body text-parchment-muted text-xs leading-relaxed">
+              <p>Vatika Farms, Farm no. 88–90, Sector 131</p>
+              <p>Noida (UP) – 201301</p>
+              <a href="tel:+919810046385" className="text-gold hover:text-gold-light transition-colors mt-1 inline-block">
+                +91 98100 46385
+              </a>
+            </div>
+            {/* Social icons */}
             <div className="flex items-center gap-4 mt-6">
-              <a
-                href="https://www.instagram.com/srigurujimanojkjuyal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-parchment-muted hover:text-gold transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-parchment-muted hover:text-gold transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube size={20} />
-              </a>
+              {SOCIAL.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-parchment-muted hover:text-gold transition-colors"
+                  aria-label={label}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
               <a
                 href="mailto:contact@panchtatwa.com"
                 className="text-parchment-muted hover:text-gold transition-colors"
@@ -103,10 +132,10 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-parchment-muted text-xs">
-            © {new Date().getFullYear()} Panchtatwa · Sri Guru Ji Manoj K Juyal · All rights reserved
+            © {new Date().getFullYear()} Panchtatwa · Sri Guru Ji Dr. Manoj K Juyal · All rights reserved
           </p>
           <p className="font-body text-parchment-muted/60 text-xs">
-            Built with reverence · www.panchtatwa.com
+            Registered under Society Registration Act (XXI) – 1860
           </p>
         </div>
       </div>
