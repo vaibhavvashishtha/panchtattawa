@@ -13,6 +13,18 @@ DOMAIN="panchtattawa.untangleai.tech"
 echo "==> Updating system packages..."
 apt-get update -y && apt-get upgrade -y
 
+echo "==> Creating 2GB swapfile (prevents OOM crash during build)..."
+if [ ! -f /swapfile ]; then
+  fallocate -l 2G /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+  echo "    Swap created and enabled."
+else
+  echo "    Swapfile already exists — skipping."
+fi
+
 echo "==> Installing build tools (required for native Node modules)..."
 apt-get install -y build-essential python3 git
 
@@ -60,7 +72,7 @@ read -p "Press ENTER to continue (or edit .env.local first)..."
 
 echo "==> Building Next.js app..."
 cd "$APP_DIR"
-npm run build
+NODE_OPTIONS="--max-old-space-size=1536" npm run build
 
 echo "==> Starting app with PM2..."
 pm2 start ecosystem.config.js
