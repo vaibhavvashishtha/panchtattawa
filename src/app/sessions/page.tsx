@@ -92,7 +92,7 @@ export default function SessionsPage() {
                 <p className="font-body text-xs text-gold tracking-wider uppercase mb-2">Next Session</p>
                 <p className="font-display text-2xl text-parchment mb-1">{next.sessionName}</p>
                 <div className="flex items-center gap-4 text-sm text-parchment-muted font-body">
-                  <span className="flex items-center gap-1.5"><Calendar size={13} />{new Date(next.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
+                  <span suppressHydrationWarning className="flex items-center gap-1.5"><Calendar size={13} />{new Date(next.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
                   <span className="flex items-center gap-1.5"><Clock size={13} />{next.time} IST · {next.duration} min</span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function SessionsPage() {
                   <div className="flex-1 min-w-0">
                     <p className="font-body text-sm text-parchment font-medium truncate">{session.sessionName}</p>
                     <div className="flex items-center gap-3 mt-1 text-xs text-parchment-muted font-body">
-                      <span className="flex items-center gap-1"><Calendar size={11} />{new Date(session.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                      <span suppressHydrationWarning className="flex items-center gap-1"><Calendar size={11} />{new Date(session.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
                       <span className="flex items-center gap-1"><Clock size={11} />{session.time} · {session.duration} min</span>
                     </div>
                   </div>

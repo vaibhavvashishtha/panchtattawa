@@ -98,9 +98,9 @@ export default async function VideoDetailPage({ params }: Props) {
                 {video.instructor && <span>{video.instructor}</span>}
                 <span className="flex items-center gap-1"><Clock size={14} />{video.duration}</span>
                 {video.viewCount && (
-                  <span className="flex items-center gap-1"><Eye size={14} />{video.viewCount.toLocaleString()} views</span>
+                  <span suppressHydrationWarning className="flex items-center gap-1"><Eye size={14} />{video.viewCount.toLocaleString()} views</span>
                 )}
-                <span>{new Date(video.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span suppressHydrationWarning>{new Date(video.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
               </div>
 
               <p className="font-body text-parchment-muted text-base leading-relaxed border-t border-black/5 pt-4">
