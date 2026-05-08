@@ -17,9 +17,11 @@ const CAUSES = [
     amountNote: 'per month, per student',
     includes: 'Tuition fee, books, stationery and uniform',
     icon: BookOpen,
-    accent: '#C9962A',
-    image: `${BASE}/childSponserInsde1.7c8b9a0d1e2f3a4b5c6d.jpg`,
-    fallbackGradient: 'from-amber-900 to-orange-900',
+    image: `${BASE}/childSponserInsde1.a27b2db062c6ee81bcc2.jpg`,
+    bg: 'bg-amber-50',
+    border: 'border-amber-200',
+    accent: 'text-amber-700',
+    btnClass: 'bg-amber-600 hover:bg-amber-700',
   },
   {
     id: 'ann',
@@ -30,9 +32,11 @@ const CAUSES = [
     amountNote: 'money or groceries',
     includes: 'Rice, pulses, cereals, flour, grains, sugar, oil, spices etc.',
     icon: Utensils,
-    accent: '#5a7c3e',
-    image: `${BASE}/aanDaanInside3.3a4b5c6d7e8f9a0b1c2d.jpg`,
-    fallbackGradient: 'from-green-950 to-emerald-900',
+    image: `${BASE}/aanDaanInside3.eaa7c358a089d0c8ddd8.jpeg`,
+    bg: 'bg-green-50',
+    border: 'border-green-200',
+    accent: 'text-green-700',
+    btnClass: 'bg-green-600 hover:bg-green-700',
   },
   {
     id: 'temple',
@@ -43,9 +47,11 @@ const CAUSES = [
     amountNote: 'per month',
     includes: 'Panchmukhī pūjā, incense, daily aarti',
     icon: Landmark,
-    accent: '#b5541c',
-    image: `${BASE}/nitiyaKarmPoojaCover.5c6d7e8f9a0b1c2d3e4f.jpg`,
-    fallbackGradient: 'from-orange-950 to-red-900',
+    image: `${BASE}/nitiyaKarmPoojaCover.dd5b9d74abb85b64dafc.jpeg`,
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
+    accent: 'text-orange-700',
+    btnClass: 'bg-orange-600 hover:bg-orange-700',
   },
   {
     id: 'gau',
@@ -56,9 +62,11 @@ const CAUSES = [
     amountNote: 'per month',
     includes: 'Feed, fodder and veterinary care',
     icon: Milk,
-    accent: '#5a7a2e',
-    image: `${BASE}/gauDaanCover.6d7e8f9a0b1c2d3e4f5a.jpg`,
-    fallbackGradient: 'from-lime-950 to-green-900',
+    image: `${BASE}/gauDaanCover.e8ce8ffd61041112c972.jpg`,
+    bg: 'bg-lime-50',
+    border: 'border-lime-200',
+    accent: 'text-lime-700',
+    btnClass: 'bg-lime-600 hover:bg-lime-700',
   },
   {
     id: 'kanya',
@@ -69,9 +77,11 @@ const CAUSES = [
     amountNote: 'per wedding',
     includes: 'Wedding ceremony support for underprivileged girls',
     icon: Gift,
-    accent: '#9b3a6e',
-    image: `${BASE}/kanyaDaanCover.7e8f9a0b1c2d3e4f5a6b.jpg`,
-    fallbackGradient: 'from-pink-950 to-rose-900',
+    image: `${BASE}/kanyaDaanCover.49961a060acd0a185ca0.JPG`,
+    bg: 'bg-pink-50',
+    border: 'border-pink-200',
+    accent: 'text-pink-700',
+    btnClass: 'bg-pink-600 hover:bg-pink-700',
   },
   {
     id: 'ashram',
@@ -82,9 +92,11 @@ const CAUSES = [
     amountNote: 'all contributions welcome',
     includes: 'General Ashram upkeep and operations',
     icon: Building2,
-    accent: '#6b4fa0',
-    image: `${BASE}/ashramPoster.a1b2c3d4e5f6a7b8c9d0.jpg`,
-    fallbackGradient: 'from-violet-950 to-purple-900',
+    image: `${BASE}/ashramMain.c354147863e7d17bc99a.jpeg`,
+    bg: 'bg-violet-50',
+    border: 'border-violet-200',
+    accent: 'text-violet-700',
+    btnClass: 'bg-violet-600 hover:bg-violet-700',
   },
 ]
 
@@ -96,15 +108,11 @@ export default function DonatePage() {
   return (
     <div className="min-h-screen bg-obsidian pt-20">
       {/* Header */}
-      <section className="py-16 px-6 border-b border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
+      <section className="py-16 px-6 border-b border-parchment/8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="font-body text-xs text-gold tracking-[0.2em] uppercase">Seva & Daan</span>
-            <h1 className="font-display text-6xl text-parchment mt-3">Donate &<br />Serve</h1>
+            <h1 className="font-display text-5xl lg:text-6xl text-parchment mt-3">Donate & Serve</h1>
             <p className="font-body text-parchment-muted text-base mt-4 max-w-lg leading-relaxed">
               Your contribution supports the Ashram, education, temple upkeep, and community service.
               Every rupee is used with gratitude and care.
@@ -114,63 +122,56 @@ export default function DonatePage() {
       </section>
 
       {/* Causes */}
-      <section className="max-w-5xl mx-auto px-6 py-16 space-y-8">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-14 space-y-8">
         {CAUSES.map((cause, i) => {
           const Icon = cause.icon
           const isEven = i % 2 === 0
           return (
             <motion.div
               key={cause.id}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-white/8 bg-obsidian-50 shadow-xl shadow-black/20"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55 }}
+              className={`grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden border ${cause.border} ${cause.bg}`}
             >
               {/* Image */}
-              <div className={`relative aspect-video md:aspect-auto min-h-[280px] bg-gradient-to-br ${cause.fallbackGradient} ${isEven ? '' : 'md:order-2'}`}>
+              <div className={`relative min-h-[280px] lg:min-h-[360px] ${isEven ? '' : 'lg:order-2'}`}>
                 <Image
                   src={cause.image}
                   alt={cause.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/10" />
-                <div className="absolute top-5 left-5">
-                  <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-sm"
-                    style={{ backgroundColor: `${cause.accent}33`, border: `1px solid ${cause.accent}55` }}
-                  >
-                    <Icon size={20} style={{ color: cause.accent }} />
-                  </div>
-                </div>
               </div>
 
               {/* Text */}
-              <div className={`p-8 flex flex-col justify-center ${isEven ? '' : 'md:order-1'}`}>
-                <h2 className="font-display text-2xl text-parchment mb-1" style={{ color: cause.accent }}>
-                  {cause.title}
-                </h2>
-                <p className="font-body text-sm text-parchment-muted mb-4">{cause.subtitle}</p>
+              <div className={`p-8 lg:p-10 flex flex-col justify-center ${isEven ? '' : 'lg:order-1'}`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-white/60`}>
+                    <Icon size={18} className={cause.accent} />
+                  </div>
+                  <div>
+                    <h2 className={`font-display text-2xl ${cause.accent}`}>{cause.title}</h2>
+                    <p className="font-body text-xs text-parchment-muted">{cause.subtitle}</p>
+                  </div>
+                </div>
                 <p className="font-body text-sm text-parchment-muted leading-relaxed mb-5">
                   {cause.description}
                 </p>
                 <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-display text-3xl text-parchment">{cause.amount}</span>
+                  <span className={`font-display text-3xl ${cause.accent}`}>{cause.amount}</span>
                   <span className="font-body text-xs text-parchment-muted">{cause.amountNote}</span>
                 </div>
                 <p className="font-body text-xs text-parchment-muted/60 mb-6">Includes: {cause.includes}</p>
-                <Button
-                  variant="primary"
-                  size="md"
+                <button
                   onClick={() => handleDonate(cause.id)}
-                  className="flex items-center gap-2 self-start"
+                  className={`self-start flex items-center gap-2 ${cause.btnClass} text-white font-body text-sm px-5 py-2.5 rounded-lg transition-colors`}
                 >
                   <Heart size={14} />
                   Donate Now
-                </Button>
+                </button>
               </div>
             </motion.div>
           )
@@ -178,23 +179,16 @@ export default function DonatePage() {
       </section>
 
       {/* Bank details */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="bg-obsidian-50 border-t border-white/5 py-16 px-6 text-center"
-      >
-        <h3 className="font-display text-3xl text-parchment mb-3">Other Ways to Contribute</h3>
+      <section className="bg-obsidian-100 border-t border-parchment/8 py-14 px-6 text-center">
+        <h3 className="font-display text-2xl text-parchment mb-3">Other Ways to Contribute</h3>
         <p className="font-body text-parchment-muted text-sm leading-relaxed max-w-sm mx-auto">
           To donate via bank transfer or for large contributions, please contact us directly.
         </p>
-        <a
-          href="tel:+919810046385"
-          className="inline-block mt-4 font-body text-gold hover:text-gold-light text-lg transition-colors"
-        >
+        <a href="tel:+919810046385"
+          className="inline-block mt-4 font-body text-gold hover:text-gold-light text-lg transition-colors">
           +91 98100 46385
         </a>
-      </motion.section>
+      </section>
     </div>
   )
 }

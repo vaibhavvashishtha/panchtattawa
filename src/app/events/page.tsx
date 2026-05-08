@@ -3,153 +3,144 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { Instagram, Facebook, Youtube } from 'lucide-react'
 
 const BASE = 'https://www.panchtatwa.com/static/media'
 
 const EVENTS = [
   {
     id: 1,
-    title: 'Astro-Vastu Session — Army Cantt., Jalandhar',
-    category: 'Workshop',
-    year: '2023',
+    title: 'Gurupoornima Celebrations',
+    category: 'Ashram Event',
+    description: 'The annual Gurupoornima celebration at Panchtatwa Ashram — a sacred gathering of disciples and seekers to honour Sri Guru Ji.',
     images: [
-      `${BASE}/AC1.a1b2c3d4e5f6a7b8c9d0.jpg`,
-      `${BASE}/AC2.b2c3d4e5f6a7b8c9d0e1.jpg`,
-      `${BASE}/AC3.c3d4e5f6a7b8c9d0e1f2.jpg`,
-      `${BASE}/AC4.d4e5f6a7b8c9d0e1f2a3.jpg`,
+      `${BASE}/GP_2024_1.8c9daafa431a729db579.jpeg`,
+      `${BASE}/GP_2024_2.57ddcbe468bd19ef23e1.jpeg`,
+      `${BASE}/GP_2024_3.aa8a1bdd6bb26b98e1b9.jpeg`,
+      `${BASE}/GP_2023_1.4b5446a85524266824ca.JPG`,
+      `${BASE}/GP_2023_2.625601c58312582ee060.JPG`,
+      `${BASE}/GP_2022_1.890fac62b0113d796c34.JPG`,
+      `${BASE}/GP_2022_2.4428891470c02225589b.JPG`,
+      `${BASE}/GP_2022_3.affedfc4cbcb534422f6.JPG`,
+      `${BASE}/GP_2020_1.bbabbf04a8e3cfb123fc.JPG`,
+      `${BASE}/GP_2020_2.332b5572e942f2aa2e8f.JPG`,
+      `${BASE}/GP_2016_1.44a12fe366fa82730b49.JPG`,
+      `${BASE}/GP_2015_1.137ee8efe535916a648e.JPG`,
+      `${BASE}/GP_2014_1.da7bf3fb068fd0d8cfd9.JPG`,
+      `${BASE}/GP_2014_2.df1094008681b04c2fea.JPG`,
     ],
   },
   {
     id: 2,
-    title: 'My Earth My Responsibility — Singapore',
-    category: 'International Event',
-    year: '2022',
+    title: 'Astro-Vastu Session — Army Cantt., Jalandhar',
+    category: 'Workshop',
+    description: 'Sri Guru Ji conducting Astro-Vastu sessions for the armed forces at Jalandhar Cantt — bringing Vedic wisdom to the defenders of the nation.',
     images: [
-      `${BASE}/AVS1.e5f6a7b8c9d0e1f2a3b4.jpg`,
-      `${BASE}/AVS2.f6a7b8c9d0e1f2a3b4c5.jpg`,
-      `${BASE}/AVRC1.a7b8c9d0e1f2a3b4c5d6.jpg`,
+      `${BASE}/ICW1.b186957aa3985c533920.jpeg`,
+      `${BASE}/ICW2.7086b7475ac11120fca2.jpeg`,
     ],
   },
   {
     id: 3,
-    title: 'National Conference on Environment and Sustainable Living',
-    category: 'Conference',
-    year: '2022',
+    title: 'My Earth My Responsibility — Singapore',
+    category: 'International Event',
+    description: 'An international event in Singapore focusing on sustainable living aligned with Vedic principles of Panchtatwa.',
     images: [
-      `${BASE}/NCESL1.b8c9d0e1f2a3b4c5d6e7.jpg`,
-      `${BASE}/NCESL2.c9d0e1f2a3b4c5d6e7f8.jpg`,
-      `${BASE}/NCESL3.d0e1f2a3b4c5d6e7f8a9.jpg`,
+      `${BASE}/avs1.fb453fcb7c3b888efb23.jpeg`,
+      `${BASE}/avrc1.c5be08880c5080fe739d.jpeg`,
+      `${BASE}/avrc2.530faf6c3ae856f160ce.jpeg`,
     ],
   },
   {
     id: 4,
-    title: 'India City Walks',
-    category: 'Community',
-    year: '2023',
+    title: 'National Conference on Environment & Sustainable Living',
+    category: 'Conference',
+    description: 'Sri Guru Ji addressing a national conference on environment and sustainable living using the Panchtatwa framework.',
     images: [
-      `${BASE}/ICW1.e1f2a3b4c5d6e7f8a9b0.jpg`,
-      `${BASE}/ICW2.f2a3b4c5d6e7f8a9b0c1.jpg`,
+      `${BASE}/ncesl1.219971a921996a51ecf8.jpeg`,
+      `${BASE}/ncesl2.3c08c14f8f3c09c1dd78.jpeg`,
     ],
   },
   {
     id: 5,
     title: 'Astro-Vastu Way of Life Workshop — Singapore',
     category: 'International Workshop',
-    year: '2019',
+    description: 'A transformative workshop in Singapore exploring the Astro-Vastu way of life for modern seekers.',
     images: [
-      `${BASE}/YMCA1.a3b4c5d6e7f8a9b0c1d2.jpg`,
-      `${BASE}/YMCA2.b4c5d6e7f8a9b0c1d2e3.jpg`,
-      `${BASE}/YMCA3.c5d6e7f8a9b0c1d2e3f4.jpg`,
-    ],
-  },
-  {
-    id: 6,
-    title: 'Gurupoornima Celebrations',
-    category: 'Ashram Event',
-    year: '2024',
-    images: [
-      `${BASE}/GP_2024.d6e7f8a9b0c1d2e3f4a5.jpg`,
-      `${BASE}/GP_2023.e7f8a9b0c1d2e3f4a5b6.jpg`,
-      `${BASE}/GP_2022.f8a9b0c1d2e3f4a5b6c7.jpg`,
-      `${BASE}/GP_2021.a9b0c1d2e3f4a5b6c7d8.jpg`,
+      `${BASE}/YMCA.3b234280220136b0956d.jpeg`,
     ],
   },
 ]
 
-const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  'Workshop': { bg: 'bg-gold/10', text: 'text-gold', border: 'border-gold/25' },
-  'International Event': { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-400/25' },
-  'Conference': { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-400/25' },
-  'Community': { bg: 'bg-green-500/10', text: 'text-green-400', border: 'border-green-400/25' },
-  'International Workshop': { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-400/25' },
-  'Ashram Event': { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-400/25' },
+const CAT_COLORS: Record<string, string> = {
+  'Ashram Event': 'bg-gold/10 text-gold border-gold/25',
+  'Workshop': 'bg-amber-100 text-amber-700 border-amber-200',
+  'International Event': 'bg-blue-100 text-blue-700 border-blue-200',
+  'Conference': 'bg-violet-100 text-violet-700 border-violet-200',
+  'International Workshop': 'bg-blue-100 text-blue-700 border-blue-200',
 }
 
 function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number }) {
-  const [activeImg, setActiveImg] = useState(0)
-  const colors = CATEGORY_COLORS[event.category] || CATEGORY_COLORS['Workshop']
-  const mainImages = event.images.slice(0, 4)
+  const [active, setActive] = useState(0)
+  const mainImgs = event.images.slice(0, 6)
+  const colors = CAT_COLORS[event.category] || CAT_COLORS['Workshop']
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.55, delay: index * 0.04 }}
+      className="border border-parchment/10 rounded-2xl overflow-hidden bg-obsidian-100"
     >
-      <div className="flex items-center gap-3 mb-5">
-        <span className={`font-body text-xs px-3 py-1 rounded-full border ${colors.bg} ${colors.text} ${colors.border}`}>
-          {event.category}
-        </span>
-        <span className="font-body text-xs text-parchment-muted/50">{event.year}</span>
-      </div>
-      <h2 className="font-display text-2xl text-parchment mb-5">{event.title}</h2>
-
-      {/* Main featured image */}
-      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-3 bg-obsidian-100 shadow-lg shadow-black/30">
+      {/* Main image */}
+      <div className="relative aspect-[16/8] bg-obsidian-50">
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeImg}
+            key={active}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.35 }}
             className="absolute inset-0"
           >
             <Image
-              src={mainImages[activeImg]}
-              alt={`${event.title} — photo ${activeImg + 1}`}
+              src={mainImgs[active]}
+              alt={`${event.title} — ${active + 1}`}
               fill
               sizes="(max-width: 768px) 100vw, 80vw"
               className="object-cover"
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+        <div className="absolute top-4 left-4">
+          <span className={`font-body text-xs px-3 py-1 rounded-full border ${colors}`}>
+            {event.category}
+          </span>
+        </div>
       </div>
 
-      {/* Thumbnails */}
-      {mainImages.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
-          {mainImages.map((src, j) => (
+      {/* Thumbnails (only if > 1 image) */}
+      {mainImgs.length > 1 && (
+        <div className="grid grid-flow-col auto-cols-fr gap-1 p-1">
+          {mainImgs.map((src, j) => (
             <button
               key={j}
-              onClick={() => setActiveImg(j)}
-              className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-200 ${
-                activeImg === j ? 'ring-2 ring-gold' : 'opacity-60 hover:opacity-90'
-              }`}
+              onClick={() => setActive(j)}
+              className={`relative aspect-video overflow-hidden rounded transition-opacity ${active === j ? 'ring-2 ring-gold' : 'opacity-60 hover:opacity-90'}`}
             >
-              <Image
-                src={src}
-                alt={`Thumbnail ${j + 1}`}
-                fill
-                sizes="25vw"
-                className="object-cover"
-              />
+              <Image src={src} alt="" fill sizes="15vw" className="object-cover" />
             </button>
           ))}
         </div>
       )}
+
+      {/* Info */}
+      <div className="p-6">
+        <h2 className="font-display text-xl text-parchment mb-2">{event.title}</h2>
+        <p className="font-body text-sm text-parchment-muted leading-relaxed">{event.description}</p>
+      </div>
     </motion.div>
   )
 }
@@ -158,15 +149,11 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-obsidian pt-20">
       {/* Header */}
-      <section className="py-16 px-6 border-b border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
+      <section className="py-16 px-6 border-b border-parchment/8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="font-body text-xs text-gold tracking-[0.2em] uppercase">Past & Upcoming</span>
-            <h1 className="font-display text-6xl text-parchment mt-3">Events &<br />Classes</h1>
+            <h1 className="font-display text-5xl lg:text-6xl text-parchment mt-3">Events & Classes</h1>
             <p className="font-body text-parchment-muted text-base mt-4 max-w-lg leading-relaxed">
               Sri Guru Ji conducts workshops, sessions and conferences across India and internationally —
               bringing Vedic wisdom to seekers everywhere.
@@ -176,34 +163,61 @@ export default function EventsPage() {
       </section>
 
       {/* Notify banner */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="bg-gold/8 border-b border-gold/15 py-3 px-6 text-center"
-      >
+      <div className="bg-gold/8 border-b border-gold/15 py-3 px-6 text-center">
         <p className="font-body text-sm text-parchment-muted">
           Want to be notified about upcoming events?{' '}
-          <a
-            href="https://www.instagram.com/srigurujimanojkjuyal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gold hover:text-gold-light transition-colors"
-          >
+          <a href="https://www.instagram.com/srigurujimanojkjuyal" target="_blank" rel="noopener noreferrer"
+            className="text-gold hover:text-gold-light transition-colors font-medium">
             Follow on Instagram
           </a>
           {' '}or call{' '}
-          <a href="tel:+919810046385" className="text-gold hover:text-gold-light transition-colors">
+          <a href="tel:+919810046385" className="text-gold hover:text-gold-light transition-colors font-medium">
             +91 98100 46385
           </a>
         </p>
-      </motion.div>
+      </div>
 
-      {/* Events list */}
-      <section className="max-w-5xl mx-auto px-6 py-16 space-y-20">
-        {EVENTS.map((event, i) => (
-          <EventCard key={event.id} event={event} index={i} />
-        ))}
+      {/* Events grid */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {EVENTS.map((event, i) => (
+            <EventCard key={event.id} event={event} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* Social follow */}
+      <section style={{ backgroundColor: '#1A0F08' }} className="py-16 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <span className="font-body text-xs text-gold tracking-[0.2em] uppercase">Stay Connected</span>
+          <h2 className="font-display text-3xl text-white mt-2 mb-8">Follow on Social Media</h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a href="https://www.instagram.com/srigurujimanojkjuyal" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-6 py-4 transition-all w-full sm:w-auto">
+              <Instagram size={24} className="text-pink-400 shrink-0" />
+              <div className="text-left">
+                <p className="font-body text-white text-sm font-semibold">Instagram</p>
+                <p className="font-body text-white/50 text-xs">@srigurujimanojkjuyal</p>
+              </div>
+            </a>
+            <a href="https://www.facebook.com/panchtatwa/" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-6 py-4 transition-all w-full sm:w-auto">
+              <Facebook size={24} className="text-blue-400 shrink-0" />
+              <div className="text-left">
+                <p className="font-body text-white text-sm font-semibold">Facebook</p>
+                <p className="font-body text-white/50 text-xs">facebook.com/panchtatwa</p>
+              </div>
+            </a>
+            <a href="https://www.youtube.com/@panchtatwa" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-6 py-4 transition-all w-full sm:w-auto">
+              <Youtube size={24} className="text-red-400 shrink-0" />
+              <div className="text-left">
+                <p className="font-body text-white text-sm font-semibold">YouTube</p>
+                <p className="font-body text-white/50 text-xs">@panchtatwa</p>
+              </div>
+            </a>
+          </div>
+        </div>
       </section>
     </div>
   )
