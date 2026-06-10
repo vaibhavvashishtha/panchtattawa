@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { href: '/videos', label: 'Content Library' },
   { href: '/books', label: 'Books' },
   { href: '/events', label: 'Events' },
-  { href: '/donate', label: 'Donate' },
+  { href: '/pricing', label: 'Pricing' },
   // { href: '/book', label: 'Book a Session' },
   // { href: '/sessions', label: 'My Sessions' },
 ]

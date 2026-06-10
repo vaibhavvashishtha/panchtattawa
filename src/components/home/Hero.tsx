@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Star, Users, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { MandalaBackground } from './MandalaBackground'
+import Image from 'next/image'
 
 const STATS = [
   { icon: Users, value: '2,100+', label: 'Students' },
@@ -111,11 +112,16 @@ export function Hero() {
             {/* Counter-rotating inner mandala */}
             <MandalaBackground className="absolute inset-8 w-[calc(100%-64px)] h-[calc(100%-64px)] animate-spin-reverse opacity-60" />
 
-            {/* Avatar circle — replace inner div with <Image> when real photo is available */}
-            <div className="relative z-10 w-44 h-44 md:w-48 md:h-48 rounded-full border-2 border-gold/50 animate-pulse-gold flex items-center justify-center overflow-hidden shadow-xl shadow-gold/20">
-              <div className="w-full h-full bg-gradient-to-br from-gold/30 via-terracotta/15 to-obsidian-100 flex items-center justify-center">
-                <span className="font-display text-6xl text-gold/70">ॐ</span>
-              </div>
+            {/* Guru Ji photo */}
+            <div className="relative z-10 w-44 h-44 md:w-48 md:h-48 rounded-full border-2 border-gold/50 animate-pulse-gold overflow-hidden shadow-xl shadow-gold/20">
+              <Image
+                src="https://www.panchtatwa.com/static/media/Guruji.13331c9164554b3ec3a5.jpeg"
+                alt="Sri Guru Ji Manoj K Juyal"
+                fill
+                sizes="192px"
+                className="object-cover object-top"
+                priority
+              />
             </div>
           </div>
 

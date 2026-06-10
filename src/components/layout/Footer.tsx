@@ -7,6 +7,7 @@ const LINKS = {
     { href: '/videos', label: 'Content Library' },
     { href: '/books', label: 'Books' },
     { href: '/events', label: 'Events & Classes' },
+    { href: '/pricing', label: 'Pricing' },
     { href: '/donate', label: 'Donations' },
   ],
   elements: [
