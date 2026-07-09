@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion'
 import { Check, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
+import { RazorpayCheckoutButton } from '@/components/payments/RazorpayCheckoutButton'
 
 const SERVICES = [
   {
+    id: 'astro-consult',
     title: 'Vedic Astrology Consultation',
     subtitle: 'Kundli Reading & Analysis',
     price: '₹2,100',
@@ -22,6 +24,7 @@ const SERVICES = [
     badge: '',
   },
   {
+    id: 'vastu-consult',
     title: 'Vastu Consultation',
     subtitle: 'Home or Office',
     price: '₹5,100',
@@ -38,6 +41,7 @@ const SERVICES = [
     badge: 'Most Popular',
   },
   {
+    id: 'astro-vastu-combined',
     title: 'Astro-Vastu Combined',
     subtitle: 'Holistic Guidance',
     price: '₹7,500',
@@ -145,19 +149,25 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <a
-                href="https://wa.me/919810046385?text=I%20would%20like%20to%20book%20a%20consultation%20for%20"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-body text-sm font-medium transition-all ${
-                  s.highlight
-                    ? 'bg-gold text-white hover:bg-gold-dark'
-                    : 'border border-gold text-gold hover:bg-gold/8'
-                }`}
-              >
-                <MessageCircle size={15} />
-                Book via WhatsApp
-              </a>
+              <div className="space-y-2.5">
+                <RazorpayCheckoutButton
+                  itemId={s.id}
+                  itemLabel={s.title}
+                  amount={parseInt(s.price.replace(/[₹,]/g, ''))}
+                  buttonClassName="bg-gold hover:bg-gold-dark w-full justify-center py-3 px-6 rounded-xl"
+                  buttonLabel="Pay Now & Book"
+                />
+
+                <a
+                  href="https://wa.me/919810046385?text=I%20would%20like%20to%20book%20a%20consultation%20for%20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-body text-sm font-medium border border-gold text-gold hover:bg-gold/8 transition-all"
+                >
+                  <MessageCircle size={15} />
+                  Book via WhatsApp
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Heart, BookOpen, Utensils, Landmark, Milk, Gift, Building2 } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { RazorpayCheckoutButton } from '@/components/payments/RazorpayCheckoutButton'
+import { PAYMENT_ITEMS } from '@/lib/payment-items'
 
 const BASE = 'https://www.panchtatwa.com/static/media'
 
@@ -101,10 +102,6 @@ const CAUSES = [
 ]
 
 export default function DonatePage() {
-  const handleDonate = (_causeId: string) => {
-    alert('Razorpay payment coming soon. Please contact +91 98100 46385 to donate.')
-  }
-
   return (
     <div className="min-h-screen bg-obsidian pt-20">
       {/* Header */}
@@ -165,13 +162,15 @@ export default function DonatePage() {
                   <span className="font-body text-xs text-parchment-muted">{cause.amountNote}</span>
                 </div>
                 <p className="font-body text-xs text-parchment-muted/60 mb-6">Includes: {cause.includes}</p>
-                <button
-                  onClick={() => handleDonate(cause.id)}
-                  className={`self-start flex items-center gap-2 ${cause.btnClass} text-white font-body text-sm px-5 py-2.5 rounded-lg transition-colors`}
-                >
-                  <Heart size={14} />
-                  Donate Now
-                </button>
+                <RazorpayCheckoutButton
+                  itemId={cause.id}
+                  itemLabel={cause.title}
+                  amount={PAYMENT_ITEMS[cause.id]?.amount === 'variable' ? 'variable' : (PAYMENT_ITEMS[cause.id]?.amount as number) / 100}
+                  minAmount={(PAYMENT_ITEMS[cause.id]?.minAmount ?? 5100) / 100}
+                  buttonClassName={cause.btnClass}
+                  icon={<Heart size={14} />}
+                  buttonLabel="Donate Now"
+                />
               </div>
             </motion.div>
           )
